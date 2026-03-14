@@ -550,11 +550,11 @@ input {
   place-items: center;
   margin-bottom: 14px;
   background:
-    radial-gradient(circle at 30% 30%, #d9f0ff, #7fc8ff 45%, #1f65a0 100%);
+    radial-gradient(circle at 30% 30%, #f3eee9, #d7923f 45%, #5a1e28 100%);
   color: white;
   font-weight: 800;
   font-size: 18px;
-  box-shadow: inset 0 0 20px rgba(255, 255, 255, 0.15);
+  box-shadow: inset 0 0 20px rgba(255, 255, 255, 0.12);
 }
 
 .topResultCard p {
