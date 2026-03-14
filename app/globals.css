@@ -51,13 +51,13 @@ input {
   border-radius: 999px;
   filter: blur(70px);
   pointer-events: none;
-  opacity: 0.5;
+  opacity: 0.45;
 }
 
 .bgGlowOne {
   width: 280px;
   height: 280px;
-  background: rgba(92, 172, 255, 0.18);
+  background: rgba(215, 146, 63, 0.14);
   top: -60px;
   left: -40px;
 }
@@ -65,7 +65,7 @@ input {
 .bgGlowTwo {
   width: 360px;
   height: 360px;
-  background: rgba(111, 129, 255, 0.14);
+  background: rgba(90, 30, 40, 0.10);
   right: -100px;
   top: 120px;
 }
@@ -75,20 +75,6 @@ input {
   margin: 0 auto;
   position: relative;
   z-index: 1;
-}
-
-.eyebrow {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  background: var(--soft);
-  color: var(--primary-2);
-  font-weight: 700;
-  font-size: 12px;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  padding: 9px 12px;
-  border-radius: 999px;
 }
 
 .heroCard,
@@ -117,7 +103,7 @@ input {
   font-size: 58px;
   line-height: 1.02;
   letter-spacing: -0.04em;
-  margin: 18px 0 16px;
+  margin: 0 0 16px;
 }
 
 .lead {
@@ -139,7 +125,7 @@ input {
   border: 1px solid var(--line);
   border-radius: var(--radius-lg);
   padding: 18px;
-  box-shadow: 0 8px 24px rgba(17, 32, 49, 0.04);
+  box-shadow: 0 8px 24px rgba(90, 30, 40, 0.04);
 }
 
 .featureCard h3 {
@@ -164,8 +150,7 @@ input {
   width: 100%;
   min-height: 520px;
   border-radius: 30px;
-  background:
-    linear-gradient(180deg, #5a1e28, #6c2532 55%, #8a3443 100%);
+  background: linear-gradient(180deg, #5a1e28, #6c2532 55%, #8a3443 100%);
   overflow: hidden;
   box-shadow: 0 30px 60px rgba(90, 30, 40, 0.28);
 }
@@ -183,8 +168,8 @@ input {
 .miniBadge {
   display: inline-flex;
   align-self: flex-start;
-  background: rgba(255, 255, 255, 0.14);
-  border: 1px solid rgba(255, 255, 255, 0.18);
+  background: rgba(243, 238, 233, 0.16);
+  border: 1px solid rgba(243, 238, 233, 0.22);
   color: white;
   padding: 10px 14px;
   border-radius: 999px;
@@ -215,7 +200,7 @@ input {
   display: block;
   height: 16px;
   border-radius: 999px;
-  background: rgba(255, 255, 255, 0.12);
+  background: rgba(243, 238, 233, 0.14);
 }
 
 .miniLines span:nth-child(1) {
@@ -238,7 +223,7 @@ input {
 .orb1 {
   width: 180px;
   height: 180px;
-  background: rgba(148, 212, 255, 0.28);
+  background: rgba(243, 238, 233, 0.14);
   top: -20px;
   right: -10px;
 }
@@ -246,7 +231,7 @@ input {
 .orb2 {
   width: 130px;
   height: 130px;
-  background: rgba(98, 180, 255, 0.3);
+  background: rgba(215, 146, 63, 0.18);
   bottom: 40px;
   left: -20px;
 }
@@ -254,7 +239,7 @@ input {
 .orb3 {
   width: 220px;
   height: 220px;
-  background: rgba(105, 136, 255, 0.18);
+  background: rgba(243, 238, 233, 0.08);
   right: -40px;
   bottom: -40px;
 }
@@ -281,19 +266,20 @@ input {
   box-shadow: 0 18px 32px rgba(90, 30, 40, 0.26);
 }
 
-.primaryBtn:hover:not(:disabled) {
-  transform: translateY(-1px);
-  box-shadow: 0 18px 32px rgba(90, 30, 40, 0.26);
+.primaryBtn:disabled,
+.secondaryBtn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
 }
 
 .secondaryBtn {
-  background: #e9eff6;
+  background: #eee4dc;
   color: var(--text);
   padding: 15px 22px;
 }
 
 .secondaryBtn:hover:not(:disabled) {
-  background: #dfe8f2;
+  background: #e7dbd2;
 }
 
 .ghostBtn {
@@ -342,6 +328,14 @@ input {
   margin-bottom: 16px;
 }
 
+.progressLabel {
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--primary);
+}
+
 .progressMeta {
   margin-top: 8px;
   color: var(--muted);
@@ -358,7 +352,7 @@ input {
   width: 100%;
   height: 16px;
   border-radius: 999px;
-  background: #e9eff6;
+  background: #eadfd7;
   overflow: hidden;
   margin-bottom: 28px;
 }
@@ -367,8 +361,6 @@ input {
   height: 100%;
   border-radius: 999px;
   background: linear-gradient(90deg, #d7923f, #5a1e28);
-  transition: width 0.25s ease;
- #2b68a4);
   transition: width 0.25s ease;
 }
 
@@ -411,7 +403,7 @@ input {
 
 .answerCard:hover {
   transform: translateY(-1px);
-  border-color: #b4c9dc;
+  border-color: #cfb4a4;
   background: white;
 }
 
@@ -435,20 +427,8 @@ input {
   top: 22px;
 }
 
-.sideBadge {
-  display: inline-block;
-  background: #eef6ff;
-  color: var(--primary-2);
-  padding: 8px 12px;
-  font-size: 12px;
-  border-radius: 999px;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-}
-
 .sideCard h3 {
-  margin: 16px 0 12px;
+  margin: 0 0 12px;
   font-size: 28px;
   line-height: 1.15;
 }
@@ -497,7 +477,7 @@ input {
 }
 
 .resultsHero h2 {
-  margin: 16px 0 8px;
+  margin: 0 0 8px;
   font-size: 42px;
   line-height: 1.08;
   letter-spacing: -0.03em;
@@ -528,7 +508,7 @@ input {
   display: inline-block;
   font-size: 12px;
   font-weight: 800;
-  color: var(--primary-2);
+  color: var(--primary);
   background: var(--soft);
   padding: 8px 10px;
   border-radius: 999px;
@@ -549,8 +529,7 @@ input {
   display: grid;
   place-items: center;
   margin-bottom: 14px;
-  background:
-    radial-gradient(circle at 30% 30%, #f3eee9, #d7923f 45%, #5a1e28 100%);
+  background: radial-gradient(circle at 30% 30%, #f3eee9, #d7923f 45%, #5a1e28 100%);
   color: white;
   font-weight: 800;
   font-size: 18px;
@@ -607,14 +586,14 @@ input {
 .chartTrack {
   height: 16px;
   border-radius: 999px;
-  background: #e9eff6;
+  background: #eadfd7;
   overflow: hidden;
 }
 
 .chartBar {
   height: 100%;
   border-radius: 999px;
-  background: linear-gradient(90deg, #84ceff, #1d66a6);
+  background: linear-gradient(90deg, #d7923f, #5a1e28);
 }
 
 .tableLike {
@@ -665,16 +644,15 @@ input {
   border-radius: 22px;
   overflow: hidden;
   margin-bottom: 18px;
-  background: linear-gradient(135deg, #133b60, #234e7c, #5bb9ff);
+  background: linear-gradient(135deg, #5a1e28, #7a2c39, #d7923f);
 }
 
 .emailGlow {
   position: absolute;
-  inset: auto;
   width: 180px;
   height: 180px;
   border-radius: 999px;
-  background: rgba(255, 255, 255, 0.18);
+  background: rgba(243, 238, 233, 0.18);
   top: -40px;
   right: -20px;
   filter: blur(4px);
@@ -689,7 +667,7 @@ input {
 }
 
 .emailCard h3 {
-  margin: 16px 0 10px;
+  margin: 0 0 10px;
   font-size: 30px;
   line-height: 1.12;
 }
@@ -732,9 +710,9 @@ input {
 
 .messageBox {
   margin-top: 14px;
-  background: var(--success);
-  border: 1px solid #cfead9;
-  color: #1d6a3a;
+  background: #f3eee9;
+  border: 1px solid #e4d7ca;
+  color: #5a1e28;
   border-radius: 16px;
   padding: 14px 16px;
   line-height: 1.6;
