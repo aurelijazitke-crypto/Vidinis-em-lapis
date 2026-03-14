@@ -805,49 +805,36 @@ export default function Page() {
     </div>
 
     <aside className="emailCard">
-      <div className="emailArtwork">
-        <div className="emailGlow" />
-        <div className="mailIcon">✦</div>
-      </div>
+  <div className="emailArtwork">
+    <div className="emailGlow" />
+    <div className="mailIcon">✦</div>
+  </div>
 
-      <h3>Įvesk el. paštą ir atverk savo analizę</h3>
-      <p>
-        Vos įvedus el. paštą, iš karto matysi pilną savo rezultatų analizę šiame puslapyje.
-      </p>
+  <h3>Tavo analizė paruošta</h3>
+  <p>
+    Gali ją peržiūrėti šiame puslapyje, išsisaugoti PDF formatu arba atlikti testą dar kartą.
+  </p>
 
-      <label className="inputLabel">El. paštas</label>
-      <input
-        className="emailInput"
-        type="email"
-        placeholder="vardas@pastas.lt"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-      />
+  <div className="sideStat">
+    <strong>{results.topWound?.percent ?? 0}%</strong>
+    <span>Stipriausia žaizda</span>
+  </div>
 
-      <label className="checkboxWrap">
-        <input
-          type="checkbox"
-          checked={consent}
-          onChange={(e) => setConsent(e.target.checked)}
-        />
-        <span>
-          Sutinku gauti savo testo rezultatus ir susijusią informaciją el. paštu.
-        </span>
-      </label>
+  <div className="sideStat">
+    <strong>{results.topProtector?.percent ?? 0}%</strong>
+    <span>Stipriausia apsauga</span>
+  </div>
 
-      <button
-        className="primaryBtn fullWidth"
-        onClick={handleUnlockResults}
-        disabled={sending}
-      >
-        {sending ? "Atveriama..." : "Pamatyti mano rezultatus"}
-      </button>
+  <div className="sideStat">
+    <strong>{results.topSoother?.percent ?? 0}%</strong>
+    <span>Stipriausias raminimo būdas</span>
+  </div>
 
-      {message && <div className="messageBox">{message}</div>}
+  <button className="primaryBtn fullWidth" onClick={savePdf}>
+    Parsisiųsti / išsisaugoti PDF
+  </button>
 
-      <button className="ghostBtn fullWidth" onClick={() => setStep("quiz")}>
-        Grįžti prie testo
-      </button>
-    </aside>
-  </section>
-)}
+  <button className="ghostBtn fullWidth" onClick={resetTest}>
+    Kartoti testą
+  </button>
+</aside>
