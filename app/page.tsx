@@ -5,7 +5,6 @@ import { useMemo, useState } from "react";
 type Step = "intro" | "quiz" | "results";
 
 const QUESTIONS = [
-const QUESTIONS = [
   "Man sunku prašyti pagalbos.",
   "Dažnai jaučiuosi nepastebėtas(-a).",
   "Bijau būti atstumtas(-a).",
@@ -47,6 +46,7 @@ const QUESTIONS = [
   "Kai kas nors nutolsta, imu kaltinti save.",
   "Dažnai gyvenu taip, lyg negalėčiau suklysti."
 ];
+
 const SCALE = [
   { label: "Niekada", value: 0 },
   { label: "Retai", value: 1 },
@@ -112,34 +112,42 @@ export default function Page() {
         title: "Gėdos žaizda",
         short: "Gėda",
         description: "Jautrumas vertinimui, atmetimui ir baimė būti pamatytam tikram.",
-        percent: Math.min(100, Math.max(25, base + 8))
+        percent: Math.min(100, Math.max(24, base + 10))
       },
       {
         title: "Kontrolės apsauga",
         short: "Kontrolė",
         description: "Saugumas siejamas su aiškumu, valdymu ir numatymu.",
-        percent: Math.min(100, Math.max(20, base))
+        percent: Math.min(100, Math.max(20, base + 2))
       },
       {
         title: "Vidinio kritiko apsauga",
         short: "Kritikas",
         description: "Vidinis balsas spaudžia, taiso ir kritikuoja.",
-        percent: Math.min(100, Math.max(15, base - 6))
+        percent: Math.min(100, Math.max(16, base - 4))
       },
       {
         title: "Atsijungimo raminimo būdas",
         short: "Atsijungimas",
         description: "Per didelė įtampa reguliuojama atsitraukimu nuo jausmų ar kontakto.",
-        percent: Math.min(100, Math.max(10, base - 10))
+        percent: Math.min(100, Math.max(12, base - 8))
+      },
+      {
+        title: "Palikimo žaizda",
+        short: "Palikimas",
+        description: "Suaktyvėja baimė būti paliktam, pakeistam ar emociškai pamestam.",
+        percent: Math.min(100, Math.max(18, base + 4))
       }
     ].sort((a, b) => b.percent - a.percent);
-  }, [answers]);
+  }, [answers, total]);
 
   const top3 = resultData.slice(0, 3);
 
   const resultSummary = useMemo(() => {
     if (!top3.length) return "Rezultatai apskaičiuoti pagal tavo atsakymus.";
-    return `Ryškiausiai matosi ${top3.map((item) => item.title.toLowerCase()).join(", ")} temos.`;
+    return `Ryškiausiai matosi ${top3
+      .map((item) => item.title.toLowerCase())
+      .join(", ")} temos.`;
   }, [top3]);
 
   function handleAnswer(value: number) {
@@ -210,7 +218,7 @@ export default function Page() {
         throw new Error(data?.message || "Nepavyko išsiųsti duomenų.");
       }
 
-      setMessage("Puiku. Tavo užklausa priimta. Vėliau čia prijungsime pilnos analizės siuntimą el. paštu.");
+      setMessage("Puiku. Užklausa priimta. Vėliau čia bus prijungtas pilnos analizės siuntimas el. paštu.");
     } catch (error) {
       setMessage(error instanceof Error ? error.message : "Įvyko klaida.");
     } finally {
@@ -237,7 +245,7 @@ export default function Page() {
               <div className="featureGrid">
                 <div className="featureCard">
                   <h3>Trumpas formatas</h3>
-                  <p>Aiškūs klausimai, patogi eiga ir progreso juosta nuo pradžios iki pabaigos.</p>
+                  <p>40 klausimų, patogi eiga ir aiški progreso juosta nuo pradžios iki pabaigos.</p>
                 </div>
                 <div className="featureCard">
                   <h3>Momentinė apžvalga</h3>
@@ -263,7 +271,7 @@ export default function Page() {
                   <div className="miniBadge">Emocijų žemėlapis</div>
                   <div className="miniChart">
                     <div className="miniChartBar" style={{ height: "78%" }} />
-                    <div className="miniChartBar" style={{ height: "58%" }} />
+                    <div className="miniChartBar" style={{ height: "56%" }} />
                     <div className="miniChartBar" style={{ height: "88%" }} />
                     <div className="miniChartBar" style={{ height: "66%" }} />
                   </div>
@@ -282,8 +290,8 @@ export default function Page() {
           <section className="quizLayout">
             <div className="quizCard">
               <div className="quizTop">
-                <div>
-                  <div className="eyebrow">Progresas</div>
+                <div className="progressTextWrap">
+                  <div className="progressLabel">Progresas</div>
                   <div className="progressMeta">
                     {answeredCount} iš {total} atsakyta
                   </div>
@@ -331,7 +339,6 @@ export default function Page() {
             </div>
 
             <aside className="sideCard">
-              <div className="sideBadge">Kas vyksta</div>
               <h3>Tavo atsakymai kuria žemėlapį</h3>
               <p>
                 Testo pabaigoje bus parodyta trumpa rezultatų suvestinė su
@@ -358,7 +365,6 @@ export default function Page() {
           <section className="resultsLayout">
             <div className="resultsMain">
               <div className="resultsHero">
-                <div className="eyebrow">Tavo rezultatų apžvalga</div>
                 <h2>Mini rezultatų suvestinė</h2>
                 <p>{resultSummary}</p>
               </div>
@@ -410,7 +416,6 @@ export default function Page() {
                 <div className="mailIcon">✦</div>
               </div>
 
-              <div className="eyebrow">Pilna analizė</div>
               <h3>Gauk pilnesnį rezultatų paaiškinimą el. paštu</h3>
               <p>
                 Įvesk savo el. paštą ir pateik užklausą pilnesnei analizei.
