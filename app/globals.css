@@ -270,21 +270,20 @@ input {
 }
 
 .primaryBtn {
-  background: linear-gradient(135deg, var(--primary), var(--primary-2));
+  background: linear-gradient(135deg, #5a1e28, #7a2c39);
   color: white;
   padding: 15px 22px;
-  box-shadow: 0 14px 28px rgba(18, 59, 99, 0.2);
+  box-shadow: 0 14px 28px rgba(90, 30, 40, 0.22);
 }
 
 .primaryBtn:hover:not(:disabled) {
   transform: translateY(-1px);
-  box-shadow: 0 18px 32px rgba(18, 59, 99, 0.22);
+  box-shadow: 0 18px 32px rgba(90, 30, 40, 0.26);
 }
 
-.primaryBtn:disabled,
-.secondaryBtn:disabled {
-  opacity: 0.45;
-  cursor: not-allowed;
+.primaryBtn:hover:not(:disabled) {
+  transform: translateY(-1px);
+  box-shadow: 0 18px 32px rgba(90, 30, 40, 0.26);
 }
 
 .secondaryBtn {
@@ -367,7 +366,9 @@ input {
 .progressFill {
   height: 100%;
   border-radius: 999px;
-  background: linear-gradient(90deg, #67b8ff, #2b68a4);
+  background: linear-gradient(90deg, #d7923f, #5a1e28);
+  transition: width 0.25s ease;
+ #2b68a4);
   transition: width 0.25s ease;
 }
 
@@ -415,10 +416,10 @@ input {
 }
 
 .answerCard.selected {
-  background: linear-gradient(135deg, #173f66, #2f6ea8);
+  background: linear-gradient(135deg, #5a1e28, #7a2c39);
   color: white;
   border-color: transparent;
-  box-shadow: 0 14px 28px rgba(23, 63, 102, 0.22);
+  box-shadow: 0 14px 28px rgba(90, 30, 40, 0.20);
 }
 
 .actionRow {
