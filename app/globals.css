@@ -202,8 +202,8 @@ input {
 .miniChartBar {
   flex: 1;
   border-radius: 18px 18px 6px 6px;
-  background: linear-gradient(180deg, #b8e2ff, #73bfff);
-  box-shadow: inset 0 0 24px rgba(255, 255, 255, 0.22);
+  background: linear-gradient(180deg, #f3eee9, #d7923f);
+  box-shadow: inset 0 0 24px rgba(255, 255, 255, 0.18);
 }
 
 .miniLines {
