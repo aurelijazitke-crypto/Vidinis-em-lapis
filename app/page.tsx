@@ -568,9 +568,275 @@ export default function Page() {
     setSending(false);
   }
 
-  function savePdf() {
-    window.print();
-  }
+function savePdf() {
+  const printWindow = window.open("", "_blank", "width=900,height=1200");
+
+  if (!printWindow) return;
+
+  const topCardsHtml = results.top3
+    .map(
+      (item, index) => `
+        <div class="top-card">
+          <div class="top-label">TOP ${index + 1}</div>
+          <h3>${item.title}</h3>
+          <div class="score">${item.percent}%</div>
+          <p>${item.intro}</p>
+        </div>
+      `
+    )
+    .join("");
+
+  const chartBlock = (title: string, items: ResultItem[]) => `
+    <section class="section">
+      <h2>${title}</h2>
+      ${items
+        .map(
+          (item) => `
+            <div class="chart-row">
+              <div class="chart-head">
+                <span>${item.title}</span>
+                <strong>${item.percent}%</strong>
+              </div>
+              <div class="track">
+                <div class="bar" style="width:${item.percent}%"></div>
+              </div>
+            </div>
+          `
+        )
+        .join("")}
+    </section>
+  `;
+
+  const breakdownBlock = (title: string, items: ResultItem[]) => `
+    <section class="section">
+      <h2>${title}</h2>
+      ${items
+        .map(
+          (item) => `
+            <div class="breakdown-item">
+              <h3>${item.title} <span>${item.percent}%</span></h3>
+              <p>${item.intro}</p>
+              <p>${item.explanation}</p>
+              <p>${item.impact}</p>
+              <div class="tips">
+                <div class="tips-title">Kaip pradėti dirbti su šia tema</div>
+                <ul>
+                  ${item.howToBegin.map((tip) => `<li>${tip}</li>`).join("")}
+                </ul>
+              </div>
+            </div>
+          `
+        )
+        .join("")}
+    </section>
+  `;
+
+  const html = `
+    <!DOCTYPE html>
+    <html lang="lt">
+      <head>
+        <meta charset="UTF-8" />
+        <title>Tavo rezultatų analizė</title>
+        <style>
+          @page {
+            size: A4;
+            margin: 14mm;
+          }
+
+          body {
+            font-family: Arial, Helvetica, sans-serif;
+            color: #2f1720;
+            margin: 0;
+            line-height: 1.6;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+          }
+
+          .wrap {
+            max-width: 100%;
+          }
+
+          h1 {
+            font-size: 28px;
+            margin: 0 0 10px;
+          }
+
+          h2 {
+            font-size: 20px;
+            margin: 0 0 14px;
+          }
+
+          h3 {
+            font-size: 16px;
+            margin: 0 0 10px;
+          }
+
+          p {
+            margin: 0 0 10px;
+          }
+
+          .hero {
+            border: 1px solid #ddd;
+            border-radius: 14px;
+            padding: 18px;
+            margin-bottom: 18px;
+            background: #fff;
+          }
+
+          .summary {
+            color: #5f5a5f;
+          }
+
+          .top-grid {
+            margin-bottom: 18px;
+          }
+
+          .top-card {
+            border: 1px solid #ddd;
+            border-radius: 14px;
+            padding: 16px;
+            margin-bottom: 12px;
+            background: #fff;
+            break-inside: avoid;
+          }
+
+          .top-label {
+            display: inline-block;
+            font-size: 11px;
+            font-weight: bold;
+            padding: 6px 8px;
+            border-radius: 999px;
+            background: #f3eee9;
+            color: #5a1e28;
+            margin-bottom: 10px;
+          }
+
+          .score {
+            display: inline-block;
+            margin: 8px 0 10px;
+            padding: 10px 14px;
+            border-radius: 999px;
+            background: #5a1e28;
+            color: white;
+            font-weight: bold;
+          }
+
+          .section {
+            border: 1px solid #ddd;
+            border-radius: 14px;
+            padding: 16px;
+            margin-bottom: 18px;
+            background: #fff;
+          }
+
+          .chart-row {
+            margin-bottom: 12px;
+            break-inside: avoid;
+          }
+
+          .chart-head {
+            display: flex;
+            justify-content: space-between;
+            gap: 10px;
+            margin-bottom: 6px;
+            font-size: 14px;
+          }
+
+          .track {
+            width: 100%;
+            height: 12px;
+            background: #eadfd7;
+            border-radius: 999px;
+            overflow: hidden;
+          }
+
+          .bar {
+            height: 100%;
+            border-radius: 999px;
+            background: linear-gradient(90deg, #d7923f, #5a1e28);
+          }
+
+          .breakdown-item {
+            border: 1px solid #e2d7cf;
+            border-radius: 12px;
+            padding: 14px;
+            margin-bottom: 12px;
+            break-inside: avoid;
+          }
+
+          .breakdown-item h3 {
+            display: flex;
+            justify-content: space-between;
+            gap: 10px;
+            align-items: center;
+          }
+
+          .breakdown-item h3 span {
+            color: #5a1e28;
+          }
+
+          .tips {
+            margin-top: 12px;
+            background: #f3eee9;
+            border: 1px solid #e4d7ca;
+            border-radius: 12px;
+            padding: 12px;
+          }
+
+          .tips-title {
+            font-weight: bold;
+            margin-bottom: 8px;
+          }
+
+          ul {
+            margin: 0;
+            padding-left: 18px;
+          }
+
+          li {
+            margin-bottom: 6px;
+          }
+        </style>
+      </head>
+      <body>
+        <div class="wrap">
+          <section class="hero">
+            <h1>Tavo rezultatų analizė</h1>
+            <p class="summary">${summaryText}</p>
+          </section>
+
+          <section class="top-grid">
+            ${topCardsHtml}
+          </section>
+
+          ${chartBlock("Žaizdos", results.wounds)}
+          ${chartBlock("Apsaugos", results.protectors)}
+          ${chartBlock("Raminimo būdai", results.soothers)}
+
+          ${breakdownBlock("Pilnas žaizdų išskaidymas", results.wounds)}
+          ${breakdownBlock("Pilnas apsaugų išskaidymas", results.protectors)}
+          ${breakdownBlock("Pilnas raminimo būdų išskaidymas", results.soothers)}
+
+          <section class="section">
+            <h2>Kaip visa tai suprasti</h2>
+            <p>Šie rezultatai nėra diagnozė ir nėra tavo tapatybė. Jie rodo, kokie modeliai šiuo metu gali būti stipriau aktyvuoti pagal tavo atsakymus. Paprastai tai yra išmokti būdai apsisaugoti, išgyventi ir reguliuoti emocinę įtampą.</p>
+            <p>Kuo stipresnė aktyvacija, tuo labiau tikėtina, kad ši tema daro įtaką tavo santykiams, savivertei, riboms ir reakcijoms į stresą. Tai nereiškia, kad su tavimi kažkas negerai. Tai reiškia, kad tavo sistema kažkada išmoko taip apsisaugoti.</p>
+            <p>Naudingiausia į šį rezultatą žiūrėti ne kaip į nuosprendį, o kaip į žemėlapį. Jis parodo, nuo ko verta pradėti, jei nori daugiau ramybės, aiškumo ir autentiškumo savo vidiniame pasaulyje.</p>
+          </section>
+        </div>
+      </body>
+    </html>
+  `;
+
+  printWindow.document.open();
+  printWindow.document.write(html);
+  printWindow.document.close();
+
+  printWindow.onload = () => {
+    printWindow.focus();
+    printWindow.print();
+  };
+}
 
   async function handleUnlockResults() {
     setMessage("");
