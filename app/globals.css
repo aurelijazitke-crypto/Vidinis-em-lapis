@@ -267,7 +267,8 @@ input {
 }
 
 .primaryBtn:disabled,
-.secondaryBtn:disabled {
+.secondaryBtn:disabled,
+.ghostBtn:disabled {
   opacity: 0.45;
   cursor: not-allowed;
 }
@@ -290,7 +291,7 @@ input {
   margin-top: 12px;
 }
 
-.ghostBtn:hover {
+.ghostBtn:hover:not(:disabled) {
   background: rgba(255, 255, 255, 0.75);
 }
 
@@ -470,6 +471,7 @@ input {
 .resultsMain {
   display: grid;
   gap: 20px;
+  min-width: 0;
 }
 
 .resultsHero {
@@ -563,6 +565,7 @@ input {
 .panelHeader span {
   color: var(--muted);
   font-size: 14px;
+  text-align: right;
 }
 
 .chart {
@@ -691,6 +694,12 @@ input {
   padding: 15px 16px;
   background: rgba(255, 255, 255, 0.88);
   margin-bottom: 14px;
+  color: var(--text);
+}
+
+.emailInput:focus {
+  outline: 2px solid rgba(215, 146, 63, 0.25);
+  border-color: var(--accent);
 }
 
 .checkboxWrap {
@@ -717,6 +726,58 @@ input {
   padding: 14px 16px;
   line-height: 1.6;
   font-size: 14px;
+}
+
+details summary::-webkit-details-marker {
+  display: none;
+}
+
+details summary {
+  list-style: none;
+}
+
+@media print {
+  body {
+    background: white;
+  }
+
+  .bgGlow,
+  .ghostBtn,
+  .primaryBtn,
+  .secondaryBtn,
+  .emailCard {
+    display: none !important;
+  }
+
+  .pageShell {
+    padding: 0;
+  }
+
+  .container,
+  .resultsLayout,
+  .resultsMain {
+    max-width: 100%;
+    width: 100%;
+    display: block;
+  }
+
+  .panel,
+  .resultsHero,
+  .topResultCard {
+    box-shadow: none;
+    border: 1px solid #ddd;
+    background: white;
+    break-inside: avoid;
+    margin-bottom: 16px;
+  }
+
+  details {
+    break-inside: avoid;
+  }
+
+  details[open] summary {
+    margin-bottom: 10px;
+  }
 }
 
 @media (max-width: 1100px) {
@@ -794,5 +855,15 @@ input {
 
   .tableScore {
     text-align: left;
+  }
+
+  .panelHeader {
+    flex-direction: column;
+    align-items: start;
+  }
+
+  .emailCard h3,
+  .sideCard h3 {
+    font-size: 26px;
   }
 }
