@@ -1,16 +1,16 @@
 :root {
-  --bg: #f4f7fb;
-  --card: rgba(255, 255, 255, 0.78);
+  --bg: #f8f3ef;
+  --card: rgba(255, 255, 255, 0.82);
   --card-solid: #ffffff;
-  --text: #112031;
-  --muted: #5f7186;
-  --line: #dce5ee;
-  --primary: #123b63;
-  --primary-2: #295f9c;
-  --accent: #7dc6ff;
-  --soft: #eef6ff;
-  --success: #e9f8ef;
-  --shadow: 0 20px 60px rgba(17, 32, 49, 0.1);
+  --text: #2f1720;
+  --muted: #6f5a5f;
+  --line: #e6d8ce;
+  --primary: #5a1e28;
+  --primary-2: #7a2c39;
+  --accent: #d7923f;
+  --soft: #f3eee9;
+  --success: #f3eee9;
+  --shadow: 0 20px 60px rgba(90, 30, 40, 0.12);
   --radius-xl: 28px;
   --radius-lg: 20px;
   --radius-md: 16px;
@@ -29,9 +29,9 @@ body {
   font-family: Inter, Arial, Helvetica, sans-serif;
   color: var(--text);
   background:
-    radial-gradient(circle at top left, rgba(125, 198, 255, 0.22), transparent 30%),
-    radial-gradient(circle at bottom right, rgba(82, 132, 255, 0.18), transparent 26%),
-    var(--bg);
+    radial-gradient(circle at top left, rgba(215, 146, 63, 0.10), transparent 28%),
+    radial-gradient(circle at bottom right, rgba(90, 30, 40, 0.10), transparent 26%),
+    #f8f3ef;
 }
 
 button,
