@@ -5,6 +5,7 @@ import { useMemo, useState } from "react";
 type Step = "intro" | "quiz" | "results";
 
 const QUESTIONS = [
+const QUESTIONS = [
   "Man sunku prašyti pagalbos.",
   "Dažnai jaučiuosi nepastebėtas(-a).",
   "Bijau būti atstumtas(-a).",
@@ -14,9 +15,38 @@ const QUESTIONS = [
   "Poilsio metu man sunku atsipalaiduoti.",
   "Jaučiu, kad mano vertė priklauso nuo to, kiek padarau.",
   "Kai būna per daug, imu emociškai atsijungti.",
-  "Santykiuose greitai aktyvuojasi palikimo baimė."
+  "Santykiuose greitai aktyvuojasi palikimo baimė.",
+  "Kai man sunku, dažniau užsisklendžiu nei atsiveriu.",
+  "Man sunku pasakyti „ne“ net kai to noriu.",
+  "Dažnai jaučiu, kad turiu būti stiprus(-i) dėl kitų.",
+  "Greitai perimu atsakomybę už kitų jausmus.",
+  "Kai suklystu, ilgai save kaltinu.",
+  "Man sunku būti spontaniškam(-ai), kai nėra aiškumo.",
+  "Dažnai galvoju, ką apie mane pagalvos kiti.",
+  "Kai jaučiu įtampą, imu per daug planuoti.",
+  "Man sunku tiesiai parodyti savo poreikius.",
+  "Dažnai bijau, kad būsiu nepakankamas(-a).",
+  "Kai santykyje atsiranda atstumas, imu nerimauti.",
+  "Net kai viskas gerai, kūne lieka budrumas.",
+  "Mano vidinis balsas dažnai griežtas ir spaudžiantis.",
+  "Kai jaučiu pažeidžiamumą, galiu reaguoti pykčiu.",
+  "Jaučiu, kad turiu nusipelnyti meilę ar priėmimą.",
+  "Dažnai nutyliu, ką iš tikrųjų jaučiu.",
+  "Man sunku išbūti nežinomybėje.",
+  "Kai esu pavargęs(-usi), dar labiau save spaudžiu.",
+  "Stengiuosi viską padaryti labai gerai, kad nebūčiau kritikuojamas(-a).",
+  "Kartais jaučiuosi tarsi atsijungęs(-usi) nuo savęs.",
+  "Kai kitas žmogus nusivilia, imu jaustis kaltas(-a).",
+  "Man sunku atsipalaiduoti, jei kažkas nebaigta.",
+  "Dažnai jaučiu, kad mano poreikiai yra per dideli.",
+  "Bijau, kad jei parodysiu tikrą save, būsiu atstumtas(-a).",
+  "Kai man skaudu, pirmiausia bandau tai nuslopinti.",
+  "Dažnai bandau nuspėti blogiausią scenarijų.",
+  "Jaučiu įtampą, kai negaliu kontroliuoti situacijos.",
+  "Man sunku priimti pagalbą be kaltės jausmo.",
+  "Kai kas nors nutolsta, imu kaltinti save.",
+  "Dažnai gyvenu taip, lyg negalėčiau suklysti."
 ];
-
 const SCALE = [
   { label: "Niekada", value: 0 },
   { label: "Retai", value: 1 },
