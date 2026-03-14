@@ -265,7 +265,7 @@ const CATEGORY_META: Record<CategoryKey, CategoryMeta> = {
       "Tai pasireiškia nutylėjimu, jausmų atidėjimu, sunkumu pravirkti ar tiesiai įvardyti savo poreikius, taip pat įpročiu pirmiausia tvarkyti situaciją, o ne save.",
     howToBegin: [
       "Pradėk vardyti būsenas paprastai, nespausdamas savęs iškart visko giliai suprasti.",
-      "Mokykis atpažinti, kada 'aš tvarkausi' iš tiesų reiškia 'aš užspaudžiu'.",
+      "Mokykis atpažinti, kada „aš tvarkausi“ iš tiesų reiškia „aš užspaudžiu“.",
       "Leisk sau jausti mažomis dozėmis, užuot bandęs būti visiškai stiprus."
     ]
   },
@@ -606,7 +606,7 @@ export default function Page() {
           })
         });
       } catch {
-        // Mailer bus prijungtas vėliau, todėl rezultatų nerakinam dėl backend nebuvimo.
+        // rezultatų nerakinam dėl backend nebuvimo
       }
 
       setStep("results");
@@ -638,11 +638,11 @@ export default function Page() {
                 </div>
                 <div className="featureCard">
                   <h3>Pilna analizė</h3>
-                  <p>Po testo pateikiama struktūruota rezultatų analizė su diagramomis ir išskaidymu.</p>
+                  <p>Po testo pateikiama pilna rezultatų struktūra su diagramomis ir išskaidymu.</p>
                 </div>
                 <div className="featureCard">
-                  <h3>El. pašto vartai</h3>
-                  <p>Kad pamatytum rezultatą, pirmiausia reikia įvesti el. paštą.</p>
+                  <h3>Rezultatas vietoje</h3>
+                  <p>Visa individuali analizė rodoma tame pačiame lange, ne el. laiške.</p>
                 </div>
               </div>
 
@@ -735,9 +735,8 @@ export default function Page() {
             <aside className="sideCard">
               <h3>Tavo atsakymai kuria žemėlapį</h3>
               <p>
-                Testo pabaigoje pirmiausia paprašysime el. pašto, o po to bus parodyta
-                pilna rezultatų analizė su trimis grupėmis: žaizdomis, apsaugomis ir
-                raminimo būdais.
+                Testo pabaigoje pirmiausia įvesi savo el. paštą, o tada pamatysi
+                pilną rezultatų analizę su diagramomis ir detaliu kiekvienos temos paaiškinimu.
               </p>
 
               <div className="sideStat">
@@ -750,91 +749,211 @@ export default function Page() {
               </div>
               <div className="sideStat">
                 <strong>1</strong>
-                <span>Pilnas išskaidymas po testo</span>
+                <span>Pilnas detalus rezultatas</span>
               </div>
             </aside>
           </section>
         )}
 
         {step === "emailGate" && (
-  <section className="resultsLayout">
-    <div className="resultsMain">
-      <div className="resultsHero">
-        <h2>Prieš atveriant pilną analizę</h2>
-        <p>
-          Įvesk savo el. paštą, kad pamatytum pilną savo rezultatų išskaidymą.
-        </p>
+          <section className="resultsLayout">
+            <div className="resultsMain">
+              <div className="resultsHero">
+                <h2>Prieš atveriant pilną analizę</h2>
+                <p>
+                  Įvesk savo el. paštą, kad pamatytum pilną savo rezultatų išskaidymą.
+                </p>
+              </div>
+
+              <div className="panel">
+                <div className="panelHeader">
+                  <h3>Ką matysi po to</h3>
+                  <span>Pilnas rezultatas</span>
+                </div>
+
+                <div className="tableLike">
+                  <div className="tableRow">
+                    <div className="tableMain">
+                      <strong>Žaizdos</strong>
+                      <p>Matysi, kurios pirminės emocinės temos šiuo metu aktyviausios.</p>
+                    </div>
+                  </div>
+
+                  <div className="tableRow">
+                    <div className="tableMain">
+                      <strong>Apsaugos</strong>
+                      <p>Matysi, kokiais būdais tavo sistema bando apsisaugoti nuo skausmo.</p>
+                    </div>
+                  </div>
+
+                  <div className="tableRow">
+                    <div className="tableMain">
+                      <strong>Raminimo būdai</strong>
+                      <p>Matysi, kaip tavo sistema mėgina reguliuoti per didelę vidinę įtampą.</p>
+                    </div>
+                  </div>
+
+                  <div className="tableRow">
+                    <div className="tableMain">
+                      <strong>Pilnas išskaidymas</strong>
+                      <p>Kiekviena svarbiausia tema bus paaiškinta plačiau, su kryptimis nuo ko pradėti.</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <aside className="emailCard">
+              <div className="emailArtwork">
+                <div className="emailGlow" />
+                <div className="mailIcon">✦</div>
+              </div>
+
+              <h3>Įvesk el. paštą ir atverk savo analizę</h3>
+              <p>
+                Vos įvedus el. paštą, iš karto matysi pilną savo rezultatų analizę šiame puslapyje.
+              </p>
+
+              <label className="inputLabel">El. paštas</label>
+              <input
+                className="emailInput"
+                type="email"
+                placeholder="vardas@pastas.lt"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+              />
+
+              <label className="checkboxWrap">
+                <input
+                  type="checkbox"
+                  checked={consent}
+                  onChange={(e) => setConsent(e.target.checked)}
+                />
+                <span>
+                  Sutinku gauti savo testo rezultatus ir susijusią informaciją el. paštu.
+                </span>
+              </label>
+
+              <button
+                className="primaryBtn fullWidth"
+                onClick={handleUnlockResults}
+                disabled={sending}
+              >
+                {sending ? "Atveriama..." : "Atverti mano analizę"}
+              </button>
+
+              {message && <div className="messageBox">{message}</div>}
+
+              <button className="ghostBtn fullWidth" onClick={() => setStep("quiz")}>
+                Grįžti prie testo
+              </button>
+            </aside>
+          </section>
+        )}
+
+        {step === "results" && (
+          <section className="resultsLayout">
+            <div className="resultsMain">
+              <div className="resultsHero">
+                <h2>Tavo rezultatų analizė</h2>
+                <p>{summaryText}</p>
+              </div>
+
+              <div className="topCards">
+                {results.top3.map((item, index) => (
+                  <div className="topResultCard" key={item.key}>
+                    <div className="topLabel">TOP {index + 1}</div>
+                    <h3>{item.title}</h3>
+                    <div className="scoreCircle">
+                      <span>{item.percent}%</span>
+                    </div>
+                    <p>{item.intro}</p>
+                  </div>
+                ))}
+              </div>
+
+              <GroupChart title="Žaizdos" items={results.wounds} />
+              <GroupChart title="Apsaugos" items={results.protectors} />
+              <GroupChart title="Raminimo būdai" items={results.soothers} />
+
+              <BreakdownSection
+                title="Pilnas žaizdų išskaidymas"
+                items={results.wounds}
+              />
+              <BreakdownSection
+                title="Pilnas apsaugų išskaidymas"
+                items={results.protectors}
+              />
+              <BreakdownSection
+                title="Pilnas raminimo būdų išskaidymas"
+                items={results.soothers}
+              />
+
+              <div className="panel">
+                <div className="panelHeader">
+                  <h3>Kaip visa tai suprasti</h3>
+                  <span>Bendras vaizdas</span>
+                </div>
+
+                <div style={{ color: "var(--muted)", lineHeight: 1.8 }}>
+                  <p>
+                    Šie rezultatai nėra diagnozė ir nėra tavo tapatybė. Jie rodo,
+                    kokie modeliai šiuo metu gali būti stipriau aktyvuoti pagal tavo
+                    atsakymus. Paprastai tai yra išmokti būdai apsisaugoti, išgyventi
+                    ir reguliuoti emocinę įtampą.
+                  </p>
+                  <p>
+                    Kuo stipresnė aktyvacija, tuo labiau tikėtina, kad ši tema daro
+                    įtaką tavo santykiams, savivertei, riboms ir reakcijoms į stresą.
+                    Tai nereiškia, kad su tavimi kažkas negerai. Tai reiškia, kad tavo
+                    sistema kažkada išmoko taip apsisaugoti.
+                  </p>
+                  <p>
+                    Naudingiausia į šį rezultatą žiūrėti ne kaip į nuosprendį, o kaip į
+                    žemėlapį. Jis parodo, nuo ko verta pradėti, jei nori daugiau ramybės,
+                    aiškumo ir autentiškumo savo vidiniame pasaulyje.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <aside className="emailCard">
+              <div className="emailArtwork">
+                <div className="emailGlow" />
+                <div className="mailIcon">✦</div>
+              </div>
+
+              <h3>Tavo analizė paruošta</h3>
+              <p>
+                Gali ją peržiūrėti šiame puslapyje, išsisaugoti PDF formatu arba atlikti testą dar kartą.
+              </p>
+
+              <div className="sideStat">
+                <strong>{results.topWound?.percent ?? 0}%</strong>
+                <span>Stipriausia žaizda</span>
+              </div>
+
+              <div className="sideStat">
+                <strong>{results.topProtector?.percent ?? 0}%</strong>
+                <span>Stipriausia apsauga</span>
+              </div>
+
+              <div className="sideStat">
+                <strong>{results.topSoother?.percent ?? 0}%</strong>
+                <span>Stipriausias raminimo būdas</span>
+              </div>
+
+              <button className="primaryBtn fullWidth" onClick={savePdf}>
+                Parsisiųsti / išsisaugoti PDF
+              </button>
+
+              <button className="ghostBtn fullWidth" onClick={resetTest}>
+                Kartoti testą
+              </button>
+            </aside>
+          </section>
+        )}
       </div>
-
-      <div className="panel">
-        <div className="panelHeader">
-          <h3>Ką matysi po to</h3>
-          <span>Pilnas rezultatas</span>
-        </div>
-
-        <div className="tableLike">
-          <div className="tableRow">
-            <div className="tableMain">
-              <strong>Žaizdos</strong>
-              <p>Matysi, kurios pirminės emocinės temos šiuo metu aktyviausios.</p>
-            </div>
-          </div>
-
-          <div className="tableRow">
-            <div className="tableMain">
-              <strong>Apsaugos</strong>
-              <p>Matysi, kokiais būdais tavo sistema bando apsisaugoti nuo skausmo.</p>
-            </div>
-          </div>
-
-          <div className="tableRow">
-            <div className="tableMain">
-              <strong>Raminimo būdai</strong>
-              <p>Matysi, kaip tavo sistema mėgina reguliuoti per didelę vidinę įtampą.</p>
-            </div>
-          </div>
-
-          <div className="tableRow">
-            <div className="tableMain">
-              <strong>Pilnas išskaidymas</strong>
-              <p>Kiekviena svarbiausia tema bus paaiškinta plačiau, su kryptimis nuo ko pradėti.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <aside className="emailCard">
-  <div className="emailArtwork">
-    <div className="emailGlow" />
-    <div className="mailIcon">✦</div>
-  </div>
-
-  <h3>Tavo analizė paruošta</h3>
-  <p>
-    Gali ją peržiūrėti šiame puslapyje, išsisaugoti PDF formatu arba atlikti testą dar kartą.
-  </p>
-
-  <div className="sideStat">
-    <strong>{results.topWound?.percent ?? 0}%</strong>
-    <span>Stipriausia žaizda</span>
-  </div>
-
-  <div className="sideStat">
-    <strong>{results.topProtector?.percent ?? 0}%</strong>
-    <span>Stipriausia apsauga</span>
-  </div>
-
-  <div className="sideStat">
-    <strong>{results.topSoother?.percent ?? 0}%</strong>
-    <span>Stipriausias raminimo būdas</span>
-  </div>
-
-  <button className="primaryBtn fullWidth" onClick={savePdf}>
-    Parsisiųsti / išsisaugoti PDF
-  </button>
-
-  <button className="ghostBtn fullWidth" onClick={resetTest}>
-    Kartoti testą
-  </button>
-</aside>
+    </main>
+  );
+}
