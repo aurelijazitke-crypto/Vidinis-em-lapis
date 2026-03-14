@@ -197,7 +197,6 @@ export default function Page() {
         {step === "intro" && (
           <section className="heroCard">
             <div className="heroLeft">
-              <div className="eyebrow">Lietuviškas testas</div>
               <h1>Tavo vidinis žemėlapis</h1>
               <p className="lead">
                 Šis testas padeda pamatyti, kokie emociniai modeliai, apsaugos ir
